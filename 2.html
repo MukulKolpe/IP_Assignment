@@ -19,7 +19,7 @@
       }
       #sleeve {
         background-color: blue;
-        color: rgb(255, 255, 255);
+        color: white;
         font-weight: bold;
       }
       .opt {
@@ -27,6 +27,11 @@
       }
       .tagline {
         background-color: green;
+        color: white;
+        font-weight: bold;
+      }
+      .delivery_date {
+        background-color: blue;
         color: white;
         font-weight: bold;
       }
@@ -44,8 +49,8 @@
         color: white;
       }
       /* Psuedo classes */
-      input.submit:hover {
-        background-color: rgb(255, 255, 10);
+      input.Submit:hover {
+        background-color: blue;
         color: black;
         transition: 1s;
       }
@@ -67,8 +72,7 @@
           document.forms["myForm"]["email"].value,
           document.forms["myForm"]["tagline"].value,
           document.forms["myForm"]["color"].value,
-          // document.forms["myForm"]["size"].value,
-          document.forms["myForm"]["sleeve"].value,
+
           document.forms["myForm"]["address"].value,
           document.forms["myForm"]["delivery_date"].value,
         ];
@@ -79,10 +83,9 @@
           alert("Please fill in all fields");
           return;
         }
-        // Part B
         if (values[0].length > 15 || values[0].length < 3) {
           alert(
-            "Please enter a tagline containing between 3 and 15 characters"
+            "Please enter a tagline containing between 3 and 10 characters"
           );
           return;
         }
@@ -99,13 +102,16 @@
       const form = document.getElementById("myForm");
       if (form) {
         form.addEventListener("submit", (event) => {
+          // stop form submission
           event.preventDefault();
         });
       }
     </script>
   </head>
-  <body>
-    <header align="center"><h1>Place an Order for T-shirts here</h1></header>
+  <body style="background-color: lightblue">
+    <header align="center">
+      <h1 target="__header">Place an Order for T-shirts here</h1>
+    </header>
     <embed
       src="https://i.pinimg.com/originals/4e/be/50/4ebe50e2495b17a79c31e48a0e54883f.png"
       width="300"
@@ -116,7 +122,7 @@
       <table align="center">
         <tr>
           <td>
-            <label for="name"
+            <label for="name" name="name"
               ><b><u>Name of the customer</u></b></label
             >
           </td>
@@ -132,7 +138,7 @@
         </tr>
         <tr>
           <td>
-            <label for="email"
+            <label for="email" name="email"
               ><b><u>Enter email ID</u></b></label
             >
           </td>
@@ -148,7 +154,7 @@
         </tr>
         <tr>
           <td>
-            <label for="tagline"
+            <label for="tagline" name="tagline"
               ><b><u>Type a Tagline:</u></b></label
             >
           </td>
@@ -156,9 +162,9 @@
             <input
               type="text"
               id="tagline"
+              for="tagline"
               name="tagline"
               value=""
-              placeholder="Hello World!"
             /><br />
           </td>
         </tr>
@@ -167,14 +173,14 @@
             <b><u>Select any one color : </u></b>
           </p>
         </td>
-        <tr>
+        <tr for="color" name="color">
           <td>
             <input
               type="radio"
               id="Blue"
-              name="Blue"
-              value="Blue"
+              name="color"
               for="color"
+              value="Blue"
             />
             <label for="Blue">Blue</label><br />
           </td>
@@ -182,59 +188,87 @@
             <input
               type="radio"
               id="Green"
-              name="Green"
-              value="Green"
+              name="color"
               for="color"
+              value="Green"
             />
             <label for="Green">Green</label><br />
           </td>
           <td>
-            <input type="radio" id="Red" name="Red" value="Red" for="color" />
+            <input type="radio" id="Red" name="color" for="color" value="Red" />
             <label for="Red">Red</label><br />
           </td>
         </tr>
         <tr>
           <td>
-            <label
+            <label for="size" name="size"
               ><b><u>Select Size of T Shirt : </u></b></label
             >
           </td>
         </tr>
-        <tr>
+        <tr for="size" name="size">
           <td>
-            <input type="checkbox" id="XXL" name="XXL" value="XXL" />
-            <label for="XXL">XXL</label><br />
+            <input
+              type="checkbox"
+              id="XXL"
+              class="checked"
+              name="size"
+              for="size"
+              value="XXL"
+            />
+            <label for="size" name="size" value="XXL">XXL</label><br />
           </td>
           <td>
-            <input type="checkbox" id="XL" name="XL" value="XL" />
-            <label for="XL">XL</label><br />
+            <input
+              type="checkbox"
+              id="XL"
+              class="checked"
+              name="size"
+              for="size"
+              value="XL"
+            />
+            <label for="size" name="size" value="XL">XL</label><br />
           </td>
           <td>
-            <input type="checkbox" id="L" name="L" value="L" />
-            <label for="L">L</label><br />
+            <input
+              type="checkbox"
+              id="L"
+              class="checked"
+              name="size"
+              for="size"
+              value="L"
+            />
+            <label for="size" value="L" name="size">L</label><br />
           </td>
           <td>
-            <input type="checkbox" id="M" name="M" value="M" />
-            <label for="M">M</label><br />
+            <input
+              type="checkbox"
+              id="M"
+              class="checked"
+              name="size"
+              for="size"
+              value="M"
+            />
+            <label for="size">M</label><br />
           </td>
         </tr>
         <tr>
           <td>
-            <label
+            <label for="sleeve"
               ><b><u>Type of T Shirt Sleeve :</u></b></label
             >
           </td>
           <td>
-            <select id="sleeve">
-              <option class="opt" value="o">Long Sleeve</option>
-              <option class="opt" value="">Short Sleeve</option>
+            <select id="sleeve" class="sleeve" name="sleeve" for="sleeve">
+              <option classname="opt" value="Long Sleeve">Long Sleeve</option>
+              <option classname="opt" value="Short Sleeve">Short Sleeve</option>
             </select>
           </td>
         </tr>
         <tr>
           <td>
             <label for="delivery_date" name="delivery_date"
-              ><b><u>Mention the expected delivery date : </u></b></label
+              ><b><u>Mention the Date to be delivered : </u></b></label
             >
           </td>
           <td>
@@ -261,9 +295,7 @@
         </tr>
 
         <tr>
-          <td>
-            <input class="submit" type="submit" value="Submit" />
-          </td>
+          <td><input type="submit" value="Submit" class="Submit" /></td>
         </tr>
       </table>
     </form>
