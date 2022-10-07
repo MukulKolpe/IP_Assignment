@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+
     <style>
       * {
         padding: 2px 10px;
@@ -55,7 +56,53 @@
       h1::first-letter {
         color: rgb(55, 47, 155);
       }
+      textarea {
+        border-radius: 8px;
+      }
     </style>
+    <script>
+      function TShirt() {
+        const values = [
+          document.forms["myForm"]["name"].value,
+          document.forms["myForm"]["email"].value,
+          document.forms["myForm"]["tagline"].value,
+          document.forms["myForm"]["color"].value,
+          // document.forms["myForm"]["size"].value,
+          document.forms["myForm"]["sleeve"].value,
+          document.forms["myForm"]["address"].value,
+          document.forms["myForm"]["delivery_date"].value,
+        ];
+        const hasEmptyFields = Object.values(values).some(
+          (element) => element === ""
+        );
+        if (hasEmptyFields) {
+          alert("Please fill in all fields");
+          return;
+        }
+        // Part B
+        if (values[0].length > 15 || values[0].length < 3) {
+          alert(
+            "Please enter a tagline containing between 3 and 15 characters"
+          );
+          return;
+        }
+        document.getElementById("size");
+        const receipt_formatted = `Thank you for shopping!\nHere's your receipt:
+      Date of Generation of Reciept: ${new Date().toLocaleDateString("UK")}
+      Tagline: ${values[0]}
+      Color: ${values[1]}
+      Sleeve: ${values[2]}
+      Address: ${values[3]}
+      Date of Delivery: ${values[4]}`;
+        confirm(receipt_formatted);
+      }
+      const form = document.getElementById("myForm");
+      if (form) {
+        form.addEventListener("submit", (event) => {
+          event.preventDefault();
+        });
+      }
+    </script>
   </head>
   <body>
     <header align="center"><h1>Place an Order for T-shirts here</h1></header>
@@ -122,15 +169,27 @@
         </td>
         <tr>
           <td>
-            <input type="radio" id="Blue" name="Blue" value="Blue" />
+            <input
+              type="radio"
+              id="Blue"
+              name="Blue"
+              value="Blue"
+              for="color"
+            />
             <label for="Blue">Blue</label><br />
           </td>
           <td>
-            <input type="radio" id="Green" name="Green" value="Green" />
+            <input
+              type="radio"
+              id="Green"
+              name="Green"
+              value="Green"
+              for="color"
+            />
             <label for="Green">Green</label><br />
           </td>
           <td>
-            <input type="radio" id="Red" name="Red" value="Red" />
+            <input type="radio" id="Red" name="Red" value="Red" for="color" />
             <label for="Red">Red</label><br />
           </td>
         </tr>
@@ -174,29 +233,37 @@
         </tr>
         <tr>
           <td>
-            <label for="tagline"
+            <label for="delivery_date" name="delivery_date"
               ><b><u>Mention the expected delivery date : </u></b></label
             >
           </td>
           <td>
-            <input type="date" id="tagline" name="tagline" value="" /><br />
+            <input
+              type="date"
+              id="delivery_date"
+              name="delivery_date"
+              class="delivery_date"
+              value=""
+            /><br />
           </td>
         </tr>
         <tr>
           <td>
-            <label
+            <label name="address" for="address"
               ><b><u>Mention the address : </u></b></label
             >
           </td>
         </tr>
         <tr>
           <td>
-            <textarea name="spec" id="spec" cols="15" rows="5"></textarea>
+            <textarea name="address" id="spec" cols="15" rows="5"></textarea>
           </td>
         </tr>
 
         <tr>
-          <td><input class="submit" type="submit" value="Submit" /></td>
+          <td>
+            <input class="submit" type="submit" value="Submit" />
+          </td>
         </tr>
       </table>
     </form>
