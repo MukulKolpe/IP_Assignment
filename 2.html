@@ -35,7 +35,7 @@
       }
       b,
       u {
-        color: red;
+        color: rgb(26, 67, 156);
         font-size: 17px;
       }
       input.Submit {
@@ -65,7 +65,7 @@
       height="300"
       style="float: right; padding-right: 30px"
     />
-    <form>
+    <form onsubmit="TShirt()" for="myForm" name="myForm">
       <table align="center">
         <tr>
           <td>
@@ -73,7 +73,15 @@
               ><b><u>Name of the customer</u></b></label
             >
           </td>
-          <td><input type="text" id="name" name="name" value="" /><br /></td>
+          <td>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              value=""
+              placeholder="Mukul Kolpe"
+            /><br />
+          </td>
         </tr>
         <tr>
           <td>
@@ -98,7 +106,13 @@
             >
           </td>
           <td>
-            <input type="text" id="tagline" name="tagline" value="" /><br />
+            <input
+              type="text"
+              id="tagline"
+              name="tagline"
+              value=""
+              placeholder="Hello World!"
+            /><br />
           </td>
         </tr>
         <td>
